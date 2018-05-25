@@ -3,16 +3,19 @@ package conexionconbasededatos;
 import java.util.ArrayList;
 
 /**
+ * Clase ordenador que contiene todos los metodos y atributos necesarios para
+ * trabajar con los objetos antes de introducirlos en la base de datos.
  *
  * @author Arturo
  */
-public class Ordenador {
+public class Ordenador{
+
     private int codigo;
     private String nombre;
     private String marca;
     private String modelo;
     private float precio;
-    public static ArrayList<Ordenador> ordenadores =new ArrayList();
+    public static ArrayList<Ordenador> ordenadores=new ArrayList();
 
     public Ordenador(){
     }
@@ -69,6 +72,5 @@ public class Ordenador {
     public String toString(){
         return "Codigo "+codigo+", nombre "+nombre+", marca "+marca+", modelo "+modelo+", precio "+precio;
     }
-    
-    
+
 }

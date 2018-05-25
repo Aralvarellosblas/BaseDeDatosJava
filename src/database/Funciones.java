@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * La clase Funciones contiene los metodos necesarios para la conexión,
+ * desconexión e interacción del programa con la base de datos.
  *
  * @author Arturo
  */
@@ -20,6 +22,12 @@ public class Funciones{
     static String url="jdbc:sqlite:D:\\NetBeansProjects\\BasesDeDatos\\Ordenadores.db";
     Ordenador o=new Ordenador();
 
+    /**
+     * Este metodo realiza una primera conexión con la base de datos situada en
+     * la ruta de la variable URL. Muestra un mensaje de confirmación del estado
+     * de la conexión, tanto si se ha realizado como si falla. Si la base no
+     * existiese, al inrentar conectarse a ella esta se crearia automaticamente
+     */
     public static void firstConnect(){
         try{
 
@@ -41,6 +49,12 @@ public class Funciones{
         }
     }
 
+    /**
+     * Este metodo conecta con la base de datos asignada a la URL
+     *
+     * @return Devuelve un parametro del tipo connection para su uso en otros
+     * metodos
+     */
     public static Connection connect(){
         Connection conn=null;
         try{
@@ -53,6 +67,10 @@ public class Funciones{
         return conn;
     }
 
+    /**
+     * Este metodo ejecuta un comando sql destinado a la creación de la tabla
+     * dentro de la base de datos
+     */
     public static void createNewTable(){
         // SQL statement for creating a new table
         String sql="CREATE TABLE IF NOT EXISTS ordenadores (\n"
@@ -74,6 +92,10 @@ public class Funciones{
         }
     }
 
+    /**
+     * Este metodo ejecuta un comando sql destinado a obtener toda la
+     * información contenida en la tabla de la base de datos
+     */
     public static void selectAll(){
         String sql="SELECT codigo, nombre, marca, modelo, precio FROM ordenadores";
         Ordenador.ordenadores.clear();
@@ -101,6 +123,13 @@ public class Funciones{
         }
     }
 
+    /**
+     * Este metodo permite obtener información de un elemento concreto de la
+     * base de datos
+     *
+     * @param cod El codigo unico del elemento que se desea buscar en la tabla
+     * @return Un String con la inoformación de dicho elemento
+     */
     public static String selectCod(int cod){
         String sql="SELECT codigo, nombre, marca, modelo, precio "
                 +"FROM ordenadores WHERE codigo = ?";
@@ -128,6 +157,16 @@ public class Funciones{
         return st;
     }
 
+    /**
+     * Este metodo permite la inserción de datos en la base de datos
+     * introduciendo los parametros necesarios
+     *
+     * @param cod int Codigo unico del elemento a añadir
+     * @param nombre String nombre del objeto
+     * @param marca String marca del objeto
+     * @param modelo String modelo del objeto
+     * @param precio String precio del objeto
+     */
     public static void insert(int cod, String nombre, String marca, String modelo, String precio){
         String sql="INSERT INTO ordenadores(codigo ,nombre, marca, modelo, precio) VALUES(?,?,?,?,?)";
         float preciof;
@@ -151,6 +190,9 @@ public class Funciones{
         }
     }
 
+    /**
+     * Este metodo permite cerrar la conexión con la base de datos
+     */
     public static void close(){
         try{
             if(conn!=null){
@@ -163,6 +205,16 @@ public class Funciones{
         }
     }
 
+    /**
+     * Este metodo permite actualizar la información de un elementod de la base
+     * de datos
+     *
+     * @param cod int Codigo unico del elemento a añadir
+     * @param nombre String nombre del objeto
+     * @param marca String marca del objeto
+     * @param modelo String modelo del objeto
+     * @param precio float precio del objeto
+     */
     public static void updateAll(int cod, String nombre, String marca, String modelo, float precio){
         String sql="UPDATE ordenadores SET nombre = ? , "
                 +"marca = ? , "
@@ -187,11 +239,19 @@ public class Funciones{
         }
     }
 
+    /**
+     * Este metodo permite actualizar un campo concreto de la información de la
+     * base de datos
+     *
+     * @param campo campo que se quiere cambiar
+     * @param dato nurvo valor del campo
+     * @param cod codigo del objeto que se quiere cambiar
+     */
     public static void updateField(String campo, String dato, int cod){
         String sql="UPDATE ordenadores SET '"+campo+"' = ? WHERE codigo = ? ";
 
         try(Connection conn=Funciones.connect();
-            PreparedStatement pstmt=conn.prepareStatement(sql)){
+                PreparedStatement pstmt=conn.prepareStatement(sql)){
             // set the corresponding param
             pstmt.setString(1, dato);
             pstmt.setInt(2, cod);
@@ -203,6 +263,11 @@ public class Funciones{
         }
     }
 
+    /**
+     * Permite eliminar una fila de la tabla en la base de datos
+     *
+     * @param cod codigo de la fila a eliminar
+     */
     public static void delete(int cod){
         String sql="DELETE FROM ordenadores WHERE codigo = ?";
 
