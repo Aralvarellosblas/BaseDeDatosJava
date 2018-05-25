@@ -203,7 +203,6 @@ public class VentanaAñadir extends javax.swing.JFrame{
     }//GEN-LAST:event_bClearActionPerformed
 
     private void bCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelActionPerformed
-        InterfazBaseDatos i=new InterfazBaseDatos();
         this.setVisible(false);
     }//GEN-LAST:event_bCancelActionPerformed
 

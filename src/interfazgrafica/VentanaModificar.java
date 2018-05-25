@@ -205,6 +205,7 @@ public class VentanaModificar extends javax.swing.JFrame{
 
     private void bModAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModAllActionPerformed
         VentanaModificarCompleta vmc=new VentanaModificarCompleta();
+        this.setVisible(false);
     }//GEN-LAST:event_bModAllActionPerformed
 
     /**

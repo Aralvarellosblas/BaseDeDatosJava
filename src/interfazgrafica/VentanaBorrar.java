@@ -132,6 +132,7 @@ public class VentanaBorrar extends javax.swing.JFrame{
     private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteActionPerformed
         Funciones.delete(Integer.parseInt(fCod.getText()));
         bDelete.setEnabled(false);
+        fCod.setText("");
     }//GEN-LAST:event_bDeleteActionPerformed
 
     private void bReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bReturnActionPerformed
